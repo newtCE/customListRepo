@@ -10,8 +10,7 @@ namespace CustomList
     {
         static void Main(string[] args)
         {
-            List<int> lookList = new List<int>();
-            lookList.Add()
+
         }
     }
 }

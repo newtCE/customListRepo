@@ -23,11 +23,14 @@ namespace CustomList
         public void TestAddToCustomListStringMadeList()
         {
             //Arrange
-            CustomList<string> testList = new CustomList<string>() { "hello", "people", "what is that?" };
-            testList.Add("Last");
+            CustomList<string> TestClass = new CustomList<string>();
+            TestClass.Add("fart1");
+            TestClass.Add("fart2");
+            TestClass.Add("fart3");
+            TestClass.Add("Last4");
             //Act
-            string result = testList[3];
-            string expected = "Last";
+            string result = TestClass.customListArray[3];
+            string expected = "Last4";
             //Assert
             Assert.AreEqual(expected, result);
         }
@@ -39,7 +42,7 @@ namespace CustomList
             CustomList<int> testList = new CustomList<int>();
             testList.Add(8);
             //Act
-            int result = testList[0];
+            int result = testList.customListArray[0];
             int expected = 8;
             //Assert
             Assert.AreEqual(expected, result);
@@ -49,10 +52,16 @@ namespace CustomList
         public void TestAddToCustomListIntMadeList()
         {
             //Arrange
-            CustomList<int> testList = new CustomList<int>() { 5, 4, 6, 7, 8, 9 };
+            CustomList<int> testList = new CustomList<int>();
+            testList.Add(4);
+            testList.Add(5);
+            testList.Add(6);
+            testList.Add(7);
+            testList.Add(12);
+            testList.Add(11);
             testList.Add(8);
             //Act
-            int result = testList[6];
+            int result = testList.customListArray[6];
             int expected = 8;
             //Assert
             Assert.AreEqual(expected, result);
@@ -62,11 +71,16 @@ namespace CustomList
         public void TestAddToCustomListDouble()
         {
             //Arrange
-            CustomList<double> testList = new CustomList<double>() {3,5,6,7,8};
+            CustomList<double> testList = new CustomList<double>();
+            testList.Add(4);
+            testList.Add(5);
+            testList.Add(6);
+            testList.Add(7);
+            testList.Add(12);
             testList.Add(1.33);
             //Act
-            string result = testList[5];
-            string expected = 1.33;
+            double result = testList.customListArray[5];
+            double expected = 1.33;
             //Assert
             Assert.AreEqual(expected, result);
         }
@@ -77,8 +91,8 @@ namespace CustomList
             //Arrange
             CustomList<double> testList = new CustomList<double>();
             //Act
-            int result = testList.count;
-            int expected = 0;
+            int result = testList.Count;
+            int expected = -1;
             //Assert
             Assert.AreEqual(expected, result);
         }
@@ -87,11 +101,126 @@ namespace CustomList
         public void TestCountToCustomListMade()
         {
             //Arrange
-            CustomList<double> testList = new CustomList<double>(){4,4,4,4,4);
+            CustomList<double> testList = new CustomList<double>();
             //Act
-            int result = testList.count;
+            testList.Add(4);
+            testList.Add(5);
+            testList.Add(6);
+            testList.Add(7);
+            testList.Add(5);
+            int result = testList.Count;
             int expected = 5;
             //Assert
             Assert.AreEqual(expected, result);
         }
+
+        [TestMethod]
+        public void TestRemoveFromtCustomListString()
+        {
+            //Arrange
+            CustomList<string> TestClass = new CustomList<string>();
+            TestClass.Add("fox");
+            TestClass.Add("cow");
+            TestClass.Add("chicken");
+            TestClass.Add("cow");
+            //Act
+            TestClass.Remove("cow");
+            string result = TestClass.customListArray[1];
+            string expected = "chicken";
+            int result2nd = TestClass.Count;
+            int expected2nd = 3;
+            //Assert
+            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected2nd, result2nd);
+        }
+
+        [TestMethod]
+        public void TestRemoveFromtCustomListStringEntireListSame()
+        {
+            //Arrange
+            CustomList<string> TestClass = new CustomList<string>();
+            TestClass.Add("cow");
+            TestClass.Add("cow");
+            TestClass.Add("cow");
+            TestClass.Add("cow");
+            //Act
+            TestClass.Remove("cow");
+            int result = TestClass.Count;
+            int expected = 3;
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod]
+        public void TestRemoveFromtCustomListInt()
+        {
+            //Arrange
+            CustomList<int> TestClass = new CustomList<int>();
+            TestClass.Add(1);
+            TestClass.Add(2);
+            TestClass.Add(3);
+            TestClass.Add(2);
+            //Act
+            TestClass.Remove(2);
+            int result = TestClass.customListArray[1];
+            int expected = 3;
+            int result2nd = TestClass.Count;
+            int expected2nd = 2;
+            //Assert
+            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected2nd, result2nd);
+        }
+
+        [TestMethod]
+        public void TestRemoveFromtCustomListIntEntireListSame()
+        {
+            //Arrange
+            CustomList<int> TestClass = new CustomList<int>();
+            TestClass.Add(2);
+            TestClass.Add(2);
+            TestClass.Add(2);
+            TestClass.Add(2);
+            //Act
+            TestClass.Remove(2);
+            int result = TestClass.Count;
+            int expected = 3;
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod]
+        public void TestRemoveFromtCustomListDouble()
+        {
+            //Arrange
+            CustomList<double> TestClass = new CustomList<double>();
+            TestClass.Add(1);
+            TestClass.Add(2);
+            TestClass.Add(3.5);
+            TestClass.Add(2);
+            //Act
+            TestClass.Remove(2);
+            double result = TestClass.customListArray[1];
+            double expected = 3.5;
+            int result2nd = TestClass.Count;
+            int expected2nd = 3;
+            //Assert
+            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected2nd, result2nd);
+        }
+
+        [TestMethod]
+        public void TestRemoveFromtCustomListDoubleEntireList()
+        {
+            //Arrange
+            CustomList<double> TestClass = new CustomList<double>();
+            TestClass.Add(2);
+            TestClass.Add(2);
+            TestClass.Add(2);
+            TestClass.Add(2);
+            //Act
+            TestClass.Remove(2);
+            int result = TestClass.Count;
+            int expected = 3;
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+    }
 }

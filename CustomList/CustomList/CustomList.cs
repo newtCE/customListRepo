@@ -13,6 +13,29 @@ namespace CustomList
         private int count = 0;
         private int capacity = 1;
 
+        public static CustomList<T> operator -(CustomList<T> list1, CustomList<T> list2)
+        {
+            CustomList<T> subtractedList = new CustomList<T>();
+            for (int i = 0; i < list1.Count; i++)         
+                {
+                    bool removalMatchFound = false;
+                    for(int j = 0; j < list2.Count; j++)    //check for matches on list2, if a match is found for this index, do not add to the output list
+                    {
+                        if (list1.customListArray[i].Equals(list2.customListArray[j]))
+                        {
+                            removalMatchFound = true;
+                        }
+                    }
+                    if (removalMatchFound == false)
+                    {
+                    subtractedList.Add(list1.customListArray[i]);
+                    }
+                }
+            return subtractedList;
+            
+
+        }
+
         public static CustomList<T> operator +(CustomList<T> list1,CustomList<T> list2){
             int combinedListBucketCapacity = list1.Capacity + list2.Capacity;
             int combinedListCount = list1.Count + list2.Count;

@@ -347,6 +347,7 @@ namespace CustomList
             Assert.AreEqual(expected, result);
             Assert.AreEqual(expected2nd, result2nd);
         }
+        [TestMethod]
         public void TestOperatorOverrideMinusIntNoMatches()
         {
             //Arrange
@@ -368,6 +369,66 @@ namespace CustomList
             int expected = 5;
             int result2nd = resultList.customListArray[3];
             int expected2nd = 5;
+            //Assert
+            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected2nd, result2nd);
+        }
+        [TestMethod]
+        public void TestOperatorOverrideMinusIntOneEmptyList()
+        {
+            //Arrange
+            CustomList<int> testList1 = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+            //Act
+            testList1.Add(1);
+            testList1.Add(2);
+            testList1.Add(3);
+            testList1.Add(5);
+            testList1.Add(4);
+            CustomList<int> resultList = testList1 - testList2;
+            int result = resultList.Count;
+            int expected = 5;
+            int result2nd = resultList.customListArray[3];
+            int expected2nd = 5;
+            //Assert
+            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected2nd, result2nd);
+        }
+        [TestMethod]
+        public void TestOperatorOverrideMinusIntBothEmptyList()
+        {
+            //Arrange
+            CustomList<int> testList1 = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+            //Act
+            CustomList<int> resultList = testList1 - testList2;
+            int result = resultList.Count;
+            int expected = 0;
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod]
+        public void TestOperatorOverrideMinusString()
+        {
+            //Arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            //Act
+            testList1.Add("wow");
+            testList1.Add("dude");
+            testList1.Add("this");
+            testList1.Add("Test");
+            testList1.Add("Driven");
+            testList2.Add("wow");
+            testList2.Add("dude");
+            testList2.Add("wow");
+            testList2.Add("hey");
+            testList2.Add("wow");
+            CustomList<string> resultList = testList1 - testList2;
+            int result = resultList.Count;
+            int expected = 3;
+            string result2nd = resultList.customListArray[0];
+            string expected2nd = "this";
             //Assert
             Assert.AreEqual(expected, result);
             Assert.AreEqual(expected2nd, result2nd);

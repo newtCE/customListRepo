@@ -9,23 +9,25 @@ namespace CustomList
     
     public class CustomList<T>
     {
-        public T[] customListArray = new T[4];
-        private int count=-1;
-        List<string> tester = new List<string>();
+        public T[] customListArray = new T[1];
+        private int count=0;
         
 
         public void Add(T item)
         {
-            int arrayBucketCapacity = count + 2;    //we are adding a new entry so make a temp array with enough room for it and all previous entries
+            int arrayBucketCapacity = count + 1;                //we are adding a new entry so make a temp array with enough room for it and all previous entries
             T[] arrayBucket = new T[arrayBucketCapacity];       //make the temp array
-            for (int i = 0; i < count + 1; i++)     //for as many entries as currently exist, copy those entries into the new array
+            if (count > 0)                                        //if this isn't the first entry to the list
+            {
+                for (int i = 0; i < arrayBucketCapacity-1; i++)     //for as many entries as currently exist, copy those entries into the new array
                 {
                     arrayBucket[i] = customListArray[i];
                 }
-            arrayBucket[count+1] = item;            //place the newest entry into the temp array
+            }
+            arrayBucket[count] = item;            //place the newest entry into the temp array
             count++;                                //increase the count
-            customListArray = new T[count + 1];     //now pour the bucket into our new customListArray
-            for (int i = 0; i < count + 1; i++)
+            customListArray = new T[count];     //now pour the bucket into our new customListArray
+            for (int i = 0; i < count; i++)
                 {
                     customListArray[i] = arrayBucket[i];
                 }
@@ -33,25 +35,28 @@ namespace CustomList
         public void Remove(T item)
         {
             bool foundTarget = false;
-            int arrayBucketCapacity = count;//currently set to count as count is in this case always one less than capacity
+            int arrayBucketCapacity = count;//we wont modify this until after we have found something to remove
             T[] arrayBucket = new T[arrayBucketCapacity];
-            for (int i = 0; i< count + 1; i++)
+            int bucketIndex = 0;
+            for (int i = 0; i< count; i++)
             {
-                if (customListArray.Equals(item) && foundTarget==false)
+                if (customListArray[i].Equals(item) && foundTarget==false)
                 {
                     foundTarget = true;
+                    bucketIndex -= 1;
                 }
                 else
                 {
-                    arrayBucket[i] = customListArray[i];
+                    arrayBucket[bucketIndex] = customListArray[i];
                 }
+                bucketIndex += 1;
             }
             if (foundTarget == true)//we did successfully remove a value so lets be consistent with capacity
             {
                 count = count - 1;
             }
-            customListArray = new T[count + 1];     //now pour the bucket into our new customListArray
-            for (int i = 0; i < count + 1; i++)
+            customListArray = new T[count];     //now pour the bucket into our new customListArray
+            for (int i = 0; i < count; i++)
             {
                 customListArray[i] = arrayBucket[i];
             }

@@ -92,7 +92,7 @@ namespace CustomList
             CustomList<double> testList = new CustomList<double>();
             //Act
             int result = testList.Count;
-            int expected = -1;
+            int expected = 0;
             //Assert
             Assert.AreEqual(expected, result);
         }
@@ -164,7 +164,7 @@ namespace CustomList
             int result = TestClass.customListArray[1];
             int expected = 3;
             int result2nd = TestClass.Count;
-            int expected2nd = 2;
+            int expected2nd = 3;
             //Assert
             Assert.AreEqual(expected, result);
             Assert.AreEqual(expected2nd, result2nd);

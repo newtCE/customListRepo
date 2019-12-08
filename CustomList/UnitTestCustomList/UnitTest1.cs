@@ -248,5 +248,78 @@ namespace CustomList
             Assert.AreEqual(expected, result);
             Assert.AreEqual(expected2nd, result2nd);
         }
+        [TestMethod]
+        public void TestOperatorOverridePlusIntBothEmpty()
+        {
+            //Arrange
+            CustomList<int> testList1 = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+            //Act
+            CustomList<int> resultList = testList1 + testList2;
+            int result = resultList.Count;
+            int expected = 0;
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod]
+        public void TestOperatorOverridePlusIntOneEmpty()
+        {
+            //Arrange
+            CustomList<int> testList1 = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+            //Act
+            testList1.Add(1);
+            testList1.Add(2);
+            testList1.Add(3);
+            testList1.Add(4);
+            testList1.Add(5);
+            CustomList<int> resultList = testList1 + testList2;
+            int result = resultList.Count;
+            int expected = 5;
+            int result2nd = resultList.customListArray[4];
+            int expected2nd = 5;
+            //Assert
+            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected2nd, result2nd);
+        }
+        [TestMethod]
+        public void TestOperatorOverridePlusString()
+        {
+            //Arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            //Act
+            testList1.Add("wow");
+            testList1.Add("dude");
+            testList1.Add("this");
+            testList1.Add("Test");
+            testList1.Add("Driven");
+            testList2.Add("Design");
+            testList2.Add("thing");
+            testList2.Add("is");
+            testList2.Add("pretty");
+            testList2.Add("informative of how to build methods and classes");
+            CustomList<string> resultList = testList1 + testList2;
+            int result = resultList.Count;
+            int expected = 10;
+            string result2nd = resultList.customListArray[7];
+            string expected2nd = "is";
+            //Assert
+            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected2nd, result2nd);
+        }
+        [TestMethod]
+        public void TestOperatorOverridePlusStringBothEmpty()
+        {
+            //Arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            //Act
+            CustomList<string> resultList = testList1 + testList2;
+            int result = resultList.Count;
+            int expected = 0;
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
     }
 }

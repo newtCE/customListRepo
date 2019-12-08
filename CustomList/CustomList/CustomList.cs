@@ -6,13 +6,39 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    
+
     public class CustomList<T>
     {
         public T[] customListArray = new T[1];
-        private int count=0;
-        
+        private int count = 0;
+        private int capacity = 1;
 
+        public static CustomList<T> operator +(CustomList<T> list1,CustomList<T> list2){
+            int combinedListBucketCapacity = list1.Capacity + list2.Capacity;
+            int combinedListCount = list1.Count + list2.Count;
+            T[] combinedArray = new T[combinedListBucketCapacity];
+            int combinedArrayIndex = 0;
+            if (combinedListCount == 0)
+            {
+                //lists are empty;
+            }
+            for(int i = 0; i < list1.Count; i++)
+                {
+                    combinedArray[combinedArrayIndex] = list1.customListArray[i];
+                    combinedArrayIndex++;
+                }
+            for(int i = 0; i < list2.Count; i++)
+                {
+                    combinedArray[combinedArrayIndex] = list2.customListArray[i];
+                    combinedArrayIndex++;
+                }
+            CustomList<T> outPutList = new CustomList<T>();
+            outPutList.capacity=combinedListBucketCapacity;
+            outPutList.count = combinedListCount;
+            outPutList.customListArray = combinedArray;
+            return outPutList;
+            }
+            
         public void Add(T item)
         {
             int arrayBucketCapacity = count + 1;                //we are adding a new entry so make a temp array with enough room for it and all previous entries
@@ -26,6 +52,7 @@ namespace CustomList
             }
             arrayBucket[count] = item;            //place the newest entry into the temp array
             count++;                                //increase the count
+            capacity = count;
             customListArray = new T[count];     //now pour the bucket into our new customListArray
             for (int i = 0; i < count; i++)
                 {
@@ -54,6 +81,7 @@ namespace CustomList
             if (foundTarget == true)//we did successfully remove a value so lets be consistent with capacity
             {
                 count = count - 1;
+                capacity = count;
             }
             customListArray = new T[count];     //now pour the bucket into our new customListArray
             for (int i = 0; i < count; i++)
@@ -62,13 +90,18 @@ namespace CustomList
             }
 
         }
-        
-        
         public int Count
         {
             get
             {
                 return count;
+            }
+        }
+        public int Capacity
+        {
+            get
+            {
+                return capacity;
             }
         }
 

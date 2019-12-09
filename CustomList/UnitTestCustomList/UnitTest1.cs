@@ -13,7 +13,7 @@ namespace CustomList
             CustomList<string> TestClass = new CustomList<string>();
             TestClass.Add("Last");
             //Act
-            string result = TestClass.customListArray[0];
+            string result = TestClass[0];
             string expected = "Last";
             //Assert
             Assert.AreEqual(expected, result);
@@ -29,7 +29,7 @@ namespace CustomList
             TestClass.Add("fart3");
             TestClass.Add("Last4");
             //Act
-            string result = TestClass.customListArray[3];
+            string result = TestClass[3];
             string expected = "Last4";
             //Assert
             Assert.AreEqual(expected, result);
@@ -42,7 +42,7 @@ namespace CustomList
             CustomList<int> testList = new CustomList<int>();
             testList.Add(8);
             //Act
-            int result = testList.customListArray[0];
+            int result = testList[0];
             int expected = 8;
             //Assert
             Assert.AreEqual(expected, result);
@@ -61,7 +61,7 @@ namespace CustomList
             testList.Add(11);
             testList.Add(8);
             //Act
-            int result = testList.customListArray[6];
+            int result = testList[6];
             int expected = 8;
             //Assert
             Assert.AreEqual(expected, result);
@@ -79,7 +79,7 @@ namespace CustomList
             testList.Add(12);
             testList.Add(1.33);
             //Act
-            double result = testList.customListArray[5];
+            double result = testList[5];
             double expected = 1.33;
             //Assert
             Assert.AreEqual(expected, result);
@@ -125,7 +125,7 @@ namespace CustomList
             TestClass.Add("cow");
             //Act
             TestClass.Remove("cow");
-            string result = TestClass.customListArray[1];
+            string result = TestClass[1];
             string expected = "chicken";
             int result2nd = TestClass.Count;
             int expected2nd = 3;
@@ -161,7 +161,7 @@ namespace CustomList
             TestClass.Add(2);
             //Act
             TestClass.Remove(2);
-            int result = TestClass.customListArray[1];
+            int result = TestClass[1];
             int expected = 3;
             int result2nd = TestClass.Count;
             int expected2nd = 3;
@@ -197,7 +197,7 @@ namespace CustomList
             TestClass.Add(2);
             //Act
             TestClass.Remove(2);
-            double result = TestClass.customListArray[1];
+            double result = TestClass[1];
             double expected = 3.5;
             int result2nd = TestClass.Count;
             int expected2nd = 3;
@@ -242,7 +242,7 @@ namespace CustomList
             CustomList<int> resultList = testList1 + testList2;
             int result = resultList.Count;
             int expected = 10;
-            int result2nd = resultList.customListArray[7];
+            int result2nd = resultList[7];
             int expected2nd = 8;
             //Assert
             Assert.AreEqual(expected, result);
@@ -276,7 +276,7 @@ namespace CustomList
             CustomList<int> resultList = testList1 + testList2;
             int result = resultList.Count;
             int expected = 5;
-            int result2nd = resultList.customListArray[4];
+            int result2nd = resultList[4];
             int expected2nd = 5;
             //Assert
             Assert.AreEqual(expected, result);
@@ -302,7 +302,7 @@ namespace CustomList
             CustomList<string> resultList = testList1 + testList2;
             int result = resultList.Count;
             int expected = 10;
-            string result2nd = resultList.customListArray[7];
+            string result2nd = resultList[7];
             string expected2nd = "is";
             //Assert
             Assert.AreEqual(expected, result);
@@ -341,7 +341,7 @@ namespace CustomList
             CustomList<int> resultList = testList1 - testList2;
             int result = resultList.Count;
             int expected = 4;
-            int result2nd = resultList.customListArray[3];
+            int result2nd = resultList[3];
             int expected2nd = 4;
             //Assert
             Assert.AreEqual(expected, result);
@@ -367,7 +367,7 @@ namespace CustomList
             CustomList<int> resultList = testList1 - testList2;
             int result = resultList.Count;
             int expected = 5;
-            int result2nd = resultList.customListArray[3];
+            int result2nd = resultList[3];
             int expected2nd = 5;
             //Assert
             Assert.AreEqual(expected, result);
@@ -388,7 +388,7 @@ namespace CustomList
             CustomList<int> resultList = testList1 - testList2;
             int result = resultList.Count;
             int expected = 5;
-            int result2nd = resultList.customListArray[3];
+            int result2nd = resultList[3];
             int expected2nd = 5;
             //Assert
             Assert.AreEqual(expected, result);
@@ -427,7 +427,7 @@ namespace CustomList
             CustomList<string> resultList = testList1 - testList2;
             int result = resultList.Count;
             int expected = 3;
-            string result2nd = resultList.customListArray[0];
+            string result2nd = resultList[0];
             string expected2nd = "this";
             //Assert
             Assert.AreEqual(expected, result);
@@ -450,10 +450,10 @@ namespace CustomList
             testList2.Add("6");
             testList2.Add("8");
             testList2.Add("10");
-            CustomList<string>resultList= ZipperMerge(testList1,testList2);
+            CustomList<string> resultList = CustomList<string>.ZipperMerge(testList1, testList2);
             int result = resultList.Count;
             int expected = 10;
-            string result2nd = resultList.customListArray[3];
+            string result2nd = resultList[3];
             string expected2nd = "4";
             //Assert
             Assert.AreEqual(expected, result);
@@ -474,10 +474,10 @@ namespace CustomList
             testList2.Add("2");
             testList2.Add("4");
             testList2.Add("6");
-            CustomList<string>resultList= ZipperMerge(testList1,testList2);
+            CustomList<string>resultList= CustomList<string>.ZipperMerge(testList1,testList2);
             int result = resultList.Count;
             int expected = 8;
-            string result2nd = resultList.customListArray[7];
+            string result2nd = resultList[7];
             string expected2nd = "9";
             //Assert
             Assert.AreEqual(expected, result);
@@ -495,7 +495,7 @@ namespace CustomList
             testList1.Add("5");
             testList1.Add("7");
             testList1.Add("9");
-            CustomList<string>resultList ZipperMerge(testList1,testList2);
+            CustomList<string> resultList = CustomList<string>.ZipperMerge(testList1, testList2);
             int result = resultList.Count;
             int expected = 5;
             string result2nd = resultList[4];
@@ -511,7 +511,7 @@ namespace CustomList
             CustomList<string> testList1 = new CustomList<string>();
             CustomList<string> testList2 = new CustomList<string>();
             //Act
-            CustomList<string> ZipperMerge(testList1,testList2);
+            CustomList<string> resultList = CustomList<string>.ZipperMerge(testList1, testList2);
             int result = resultList.Count;
             int expected = 0;
             //Assert

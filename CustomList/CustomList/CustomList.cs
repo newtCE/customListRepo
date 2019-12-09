@@ -144,5 +144,15 @@ namespace CustomList
             }
         }
 
+        // Indexer
+        public T this[int index]
+        {
+            get
+            {
+                return customListArray[index];
+            }
+
+        }
+
     }
 }

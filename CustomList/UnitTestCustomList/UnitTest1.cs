@@ -433,5 +433,89 @@ namespace CustomList
             Assert.AreEqual(expected, result);
             Assert.AreEqual(expected2nd, result2nd);
         }
+        [TestMethod]
+        public void TestZipperMergeString()
+        {
+            //Arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            //Act
+            testList1.Add("1");
+            testList1.Add("3");
+            testList1.Add("5");
+            testList1.Add("7");
+            testList1.Add("9");
+            testList2.Add("2");
+            testList2.Add("4");
+            testList2.Add("6");
+            testList2.Add("8");
+            testList2.Add("10");
+            CustomList<string>resultList= ZipperMerge(testList1,testList2);
+            int result = resultList.Count;
+            int expected = 10;
+            string result2nd = resultList.customListArray[3];
+            string expected2nd = "4";
+            //Assert
+            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected2nd, result2nd);
+        }
+        [TestMethod]
+        public void TestZipperMergeStringUnevenCounts()
+        {
+            //Arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            //Act
+            testList1.Add("1");
+            testList1.Add("3");
+            testList1.Add("5");
+            testList1.Add("7");
+            testList1.Add("9");
+            testList2.Add("2");
+            testList2.Add("4");
+            testList2.Add("6");
+            CustomList<string>resultList= ZipperMerge(testList1,testList2);
+            int result = resultList.Count;
+            int expected = 8;
+            string result2nd = resultList.customListArray[7];
+            string expected2nd = "9";
+            //Assert
+            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected2nd, result2nd);
+        }
+        [TestMethod]
+        public void TestZipperMergeStringOneEmpty()
+        {
+            //Arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            //Act
+            testList1.Add("1");
+            testList1.Add("3");
+            testList1.Add("5");
+            testList1.Add("7");
+            testList1.Add("9");
+            CustomList<string>resultList ZipperMerge(testList1,testList2);
+            int result = resultList.Count;
+            int expected = 5;
+            string result2nd = resultList[4];
+            string expected2nd = "9";
+            //Assert
+            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected2nd, result2nd);
+        }
+        [TestMethod]
+        public void TestZipperMergeStringBothEmpty()
+        {
+            //Arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            //Act
+            CustomList<string> ZipperMerge(testList1,testList2);
+            int result = resultList.Count;
+            int expected = 0;
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
     }
 }

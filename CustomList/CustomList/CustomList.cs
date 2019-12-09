@@ -61,7 +61,23 @@ namespace CustomList
             outPutList.customListArray = combinedArray;
             return outPutList;
             }
-            
+        public static CustomList<T> ZipperMerge(CustomList<T> list1, CustomList<T> list2)
+        {
+            int totalCount = list1.Count + list2.Count;
+            CustomList<T> zipperList = new CustomList<T>();
+            for(int i = 0; i < totalCount; i++)
+            {
+                if (i < list1.Count)
+                {
+                    zipperList.Add(list1.customListArray[i]);
+                }
+                if (i < list2.Count)
+                {
+                    zipperList.Add(list2.customListArray[i]);
+                }
+            }
+            return zipperList;
+        }
         public void Add(T item)
         {
             int arrayBucketCapacity = count + 1;                //we are adding a new entry so make a temp array with enough room for it and all previous entries

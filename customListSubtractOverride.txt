@@ -1,0 +1,40 @@
+CustomList Method Operator Override (-):
+Within the CustomList class the (-) operator can be used to create a new CustomList object
+by subracting duplicate list values found in one list from another. This process follows the
+order of operations so the CustomList on the left side of the (-) operator will be the basis
+for our new CustomList with duplicate values found in the CustomList found on the right side
+of the (-) operator removed.
+Values found in CustomList2 (right side of the (-) operator) will not appear in the resulting list.
+
+Parameters:
+
+CustomList(left side of operator)
+Base list from which values are to be removed.
+
+CustomList(right side of operator)
+List from which values to be removed from the base list are derived.
+
+Returns:
+CustomList
+A new custom list with any duplicate values removed.
+
+Example Logic:
+
+CustomList1 [1,1,2,2,3,3,4,4,5,5,6,6,7,7]
+CustomList2 [3,5,7,9,10]
+
+CustomList1 - CustomList2 = ResultList [1,1,2,2,4,4,6,6]
+
+Example Code:
+
+CustomList<int> list1=new CustomList<int>()[1,2,3,4];
+CustomList<int> list2=new CustomList<int>()[3,4,5];
+CustomList<int> resultList=list1-list2;
+
+Console.WriteLine(toString(resultList));
+
+//OUTPUT
+//"1,2"
+
+
+

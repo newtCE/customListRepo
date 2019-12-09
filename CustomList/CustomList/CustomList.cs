@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace CustomList
 {
 
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable
     {
         public T[] customListArray = new T[1];
         private int count = 0;
@@ -145,6 +146,15 @@ namespace CustomList
             }
 
         }
+
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                yield return customListArray[i];
+            }
+        }
+
         public int Count
         {
             get

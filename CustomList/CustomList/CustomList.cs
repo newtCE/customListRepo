@@ -61,7 +61,23 @@ namespace CustomList
             outPutList.customListArray = combinedArray;
             return outPutList;
             }
-        public static CustomList<T> ZipperMerge(CustomList<T> list1, CustomList<T> list2)
+        public override string ToString()
+        {
+            StringBuilder arrayString = new StringBuilder();
+            for(int i = 0; i < Count; i++)
+            {
+                if (i==0)
+                {
+                    arrayString.Append(customListArray[i]);
+                }
+                else
+                {
+                    arrayString.Append(", "+customListArray[i]);
+                }
+            }
+            return arrayString.ToString();
+        }
+            public static CustomList<T> ZipperMerge(CustomList<T> list1, CustomList<T> list2)
         {
             int totalCount = list1.Count + list2.Count;
             CustomList<T> zipperList = new CustomList<T>();

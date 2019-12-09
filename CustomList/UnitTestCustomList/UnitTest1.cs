@@ -517,5 +517,48 @@ namespace CustomList
             //Assert
             Assert.AreEqual(expected, result);
         }
+        [TestMethod]
+        public void TestToStringString()
+        {
+            //Arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            //Act
+            testList1.Add("1");
+            testList1.Add("2");
+            testList1.Add("Three");
+            testList1.Add("Four");
+            testList1.Add("Five");
+            string result = testList1.ToString();
+            string expected = "1, 2, Three, Four, Five";
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod]
+        public void TestToStringInt()
+        {
+            //Arrange
+            CustomList<int> testList1 = new CustomList<int>();
+            //Act
+            testList1.Add(1);
+            testList1.Add(2);
+            testList1.Add(3);
+            testList1.Add(4);
+            testList1.Add(5);
+            string result = testList1.ToString();
+            string expected = "1, 2, 3, 4, 5";
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod]
+        public void TestToStringEmpty()
+        {
+            //Arrange
+            CustomList<int> testList1 = new CustomList<int>();
+            //Act
+            string result = testList1.ToString();
+            string expected = "";
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
     }
 }

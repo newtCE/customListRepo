@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-
     public class CustomList<T> : IEnumerable
     {
         public T[] customListArray = new T[1];
@@ -20,7 +19,7 @@ namespace CustomList
             for (int i = 0; i < list1.Count; i++)         
                 {
                     bool removalMatchFound = false;
-                    for(int j = 0; j < list2.Count; j++)    //check for matches on list2, if a match is found for this index, do not add to the output list
+                    for(int j = 0; j < list2.Count; j++)
                     {
                         if (list1.customListArray[i].Equals(list2.customListArray[j]))
                         {
@@ -33,19 +32,13 @@ namespace CustomList
                     }
                 }
             return subtractedList;
-            
-
         }
-
-        public static CustomList<T> operator +(CustomList<T> list1,CustomList<T> list2){
+        public static CustomList<T> operator +(CustomList<T> list1,CustomList<T> list2)
+        {
             int combinedListBucketCapacity = list1.Capacity + list2.Capacity;
             int combinedListCount = list1.Count + list2.Count;
             T[] combinedArray = new T[combinedListBucketCapacity];
             int combinedArrayIndex = 0;
-            if (combinedListCount == 0)
-            {
-                //lists are empty;
-            }
             for(int i = 0; i < list1.Count; i++)
                 {
                     combinedArray[combinedArrayIndex] = list1.customListArray[i];
@@ -56,10 +49,12 @@ namespace CustomList
                     combinedArray[combinedArrayIndex] = list2.customListArray[i];
                     combinedArrayIndex++;
                 }
-            CustomList<T> outPutList = new CustomList<T>();
-            outPutList.capacity=combinedListBucketCapacity;
-            outPutList.count = combinedListCount;
-            outPutList.customListArray = combinedArray;
+            CustomList<T> outPutList = new CustomList<T>
+            {
+                capacity = combinedListBucketCapacity,
+                count = combinedListCount,
+                customListArray = combinedArray
+            };
             return outPutList;
             }
         public override string ToString()
@@ -78,7 +73,7 @@ namespace CustomList
             }
             return arrayString.ToString();
         }
-            public static CustomList<T> ZipperMerge(CustomList<T> list1, CustomList<T> list2)
+        public static CustomList<T> ZipperMerge(CustomList<T> list1, CustomList<T> list2)
         {
             int totalCount = list1.Count + list2.Count;
             CustomList<T> zipperList = new CustomList<T>();
@@ -97,19 +92,19 @@ namespace CustomList
         }
         public void Add(T item)
         {
-            int arrayBucketCapacity = count + 1;                //we are adding a new entry so make a temp array with enough room for it and all previous entries
-            T[] arrayBucket = new T[arrayBucketCapacity];       //make the temp array
-            if (count > 0)                                        //if this isn't the first entry to the list
+            int arrayBucketCapacity = count + 1;
+            T[] arrayBucket = new T[arrayBucketCapacity];
+            if (count > 0)
             {
-                for (int i = 0; i < arrayBucketCapacity-1; i++)     //for as many entries as currently exist, copy those entries into the new array
+                for (int i = 0; i < arrayBucketCapacity-1; i++)
                 {
                     arrayBucket[i] = customListArray[i];
                 }
             }
-            arrayBucket[count] = item;            //place the newest entry into the temp array
-            count++;                                //increase the count
+            arrayBucket[count] = item;
+            count++;
             capacity = count;
-            customListArray = new T[count];     //now pour the bucket into our new customListArray
+            customListArray = new T[count];
             for (int i = 0; i < count; i++)
                 {
                     customListArray[i] = arrayBucket[i];
@@ -118,7 +113,7 @@ namespace CustomList
         public void Remove(T item)
         {
             bool foundTarget = false;
-            int arrayBucketCapacity = count;//we wont modify this until after we have found something to remove
+            int arrayBucketCapacity = count;
             T[] arrayBucket = new T[arrayBucketCapacity];
             int bucketIndex = 0;
             for (int i = 0; i< count; i++)
@@ -134,19 +129,18 @@ namespace CustomList
                 }
                 bucketIndex += 1;
             }
-            if (foundTarget == true)//we did successfully remove a value so lets be consistent with capacity
+            if (foundTarget == true)
             {
                 count = count - 1;
                 capacity = count;
             }
-            customListArray = new T[count];     //now pour the bucket into our new customListArray
+            customListArray = new T[count];
             for (int i = 0; i < count; i++)
             {
                 customListArray[i] = arrayBucket[i];
             }
 
         }
-
         public IEnumerator GetEnumerator()
         {
             for (int i = 0; i < Count; i++)
@@ -154,7 +148,6 @@ namespace CustomList
                 yield return customListArray[i];
             }
         }
-
         public int Count
         {
             get
@@ -169,7 +162,6 @@ namespace CustomList
                 return capacity;
             }
         }
-
         // Indexer
         public T this[int index]
         {

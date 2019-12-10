@@ -18,23 +18,17 @@ namespace CustomList
             //Assert
             Assert.AreEqual(expected, result);
         }
-
         [TestMethod]
         public void TestAddToCustomListStringMadeList()
         {
             //Arrange
-            CustomList<string> TestClass = new CustomList<string>();
-            TestClass.Add("fart1");
-            TestClass.Add("fart2");
-            TestClass.Add("fart3");
-            TestClass.Add("Last4");
+            CustomList<string> TestClass = new CustomList<string>() { "1", "2", "3", "Last4" };
             //Act
             string result = TestClass[3];
             string expected = "Last4";
             //Assert
             Assert.AreEqual(expected, result);
         }
-
         [TestMethod]
         public void TestAddToCustomListIntEmptyList()
         {
@@ -47,7 +41,6 @@ namespace CustomList
             //Assert
             Assert.AreEqual(expected, result);
         }
-
         [TestMethod]
         public void TestAddToCustomListIntMadeList()
         {
@@ -66,7 +59,6 @@ namespace CustomList
             //Assert
             Assert.AreEqual(expected, result);
         }
-
         [TestMethod]
         public void TestAddToCustomListDouble()
         {
@@ -84,7 +76,6 @@ namespace CustomList
             //Assert
             Assert.AreEqual(expected, result);
         }
-
         [TestMethod]
         public void TestCountToCustomListEmpty()
         {
@@ -96,7 +87,6 @@ namespace CustomList
             //Assert
             Assert.AreEqual(expected, result);
         }
-
         [TestMethod]
         public void TestCountToCustomListMade()
         {
@@ -113,9 +103,8 @@ namespace CustomList
             //Assert
             Assert.AreEqual(expected, result);
         }
-
         [TestMethod]
-        public void TestRemoveFromtCustomListString()
+        public void TestRemoveFromtCustomListStringItem()
         {
             //Arrange
             CustomList<string> TestClass = new CustomList<string>();
@@ -127,13 +116,24 @@ namespace CustomList
             TestClass.Remove("cow");
             string result = TestClass[1];
             string expected = "chicken";
-            int result2nd = TestClass.Count;
-            int expected2nd = 3;
             //Assert
             Assert.AreEqual(expected, result);
-            Assert.AreEqual(expected2nd, result2nd);
         }
-
+        public void TestRemoveFromtCustomListStringCount()
+        {
+            //Arrange
+            CustomList<string> TestClass = new CustomList<string>();
+            TestClass.Add("fox");
+            TestClass.Add("cow");
+            TestClass.Add("chicken");
+            TestClass.Add("cow");
+            //Act
+            TestClass.Remove("cow");
+            int result = TestClass.Count;
+            int expected = 3;
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
         [TestMethod]
         public void TestRemoveFromtCustomListStringEntireListSame()
         {
@@ -151,7 +151,7 @@ namespace CustomList
             Assert.AreEqual(expected, result);
         }
         [TestMethod]
-        public void TestRemoveFromtCustomListInt()
+        public void TestRemoveFromtCustomListIntItem()
         {
             //Arrange
             CustomList<int> TestClass = new CustomList<int>();
@@ -163,13 +163,25 @@ namespace CustomList
             TestClass.Remove(2);
             int result = TestClass[1];
             int expected = 3;
-            int result2nd = TestClass.Count;
-            int expected2nd = 3;
             //Assert
             Assert.AreEqual(expected, result);
-            Assert.AreEqual(expected2nd, result2nd);
         }
-
+        [TestMethod]
+        public void TestRemoveFromtCustomListIntCount()
+        {
+            //Arrange
+            CustomList<int> TestClass = new CustomList<int>();
+            TestClass.Add(1);
+            TestClass.Add(2);
+            TestClass.Add(3);
+            TestClass.Add(2);
+            //Act
+            TestClass.Remove(2);
+            int result = TestClass.Count;
+            int expected = 3;
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
         [TestMethod]
         public void TestRemoveFromtCustomListIntEntireListSame()
         {
@@ -187,7 +199,7 @@ namespace CustomList
             Assert.AreEqual(expected, result);
         }
         [TestMethod]
-        public void TestRemoveFromtCustomListDouble()
+        public void TestRemoveFromtCustomListDoubleItem()
         {
             //Arrange
             CustomList<double> TestClass = new CustomList<double>();
@@ -199,13 +211,25 @@ namespace CustomList
             TestClass.Remove(2);
             double result = TestClass[1];
             double expected = 3.5;
-            int result2nd = TestClass.Count;
-            int expected2nd = 3;
             //Assert
             Assert.AreEqual(expected, result);
-            Assert.AreEqual(expected2nd, result2nd);
         }
-
+        [TestMethod]
+        public void TestRemoveFromtCustomListDoubleCount()
+        {
+            //Arrange
+            CustomList<double> TestClass = new CustomList<double>();
+            TestClass.Add(1);
+            TestClass.Add(2);
+            TestClass.Add(3.5);
+            TestClass.Add(2);
+            //Act
+            TestClass.Remove(2);
+            int result = TestClass.Count;
+            int expected = 3;
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
         [TestMethod]
         public void TestRemoveFromtCustomListDoubleEntireList()
         {
@@ -223,7 +247,30 @@ namespace CustomList
             Assert.AreEqual(expected, result);
         }
         [TestMethod]
-        public void TestOperatorOverridePlusInt()
+        public void TestOperatorOverridePlusIntItem()
+        {
+            //Arrange
+            CustomList<int> testList1 = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+            //Act
+            testList1.Add(1);
+            testList1.Add(2);
+            testList1.Add(3);
+            testList1.Add(4);
+            testList1.Add(5);
+            testList2.Add(6);
+            testList2.Add(7);
+            testList2.Add(8);
+            testList2.Add(9);
+            testList2.Add(10);
+            CustomList<int> resultList = testList1 + testList2;
+            int result = resultList[7];
+            int expected = 8;
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod]
+        public void TestOperatorOverridePlusIntCount()
         {
             //Arrange
             CustomList<int> testList1 = new CustomList<int>();
@@ -242,11 +289,8 @@ namespace CustomList
             CustomList<int> resultList = testList1 + testList2;
             int result = resultList.Count;
             int expected = 10;
-            int result2nd = resultList[7];
-            int expected2nd = 8;
             //Assert
             Assert.AreEqual(expected, result);
-            Assert.AreEqual(expected2nd, result2nd);
         }
         [TestMethod]
         public void TestOperatorOverridePlusIntBothEmpty()
@@ -434,7 +478,30 @@ namespace CustomList
             Assert.AreEqual(expected2nd, result2nd);
         }
         [TestMethod]
-        public void TestZipperMergeString()
+        public void TestZipperMergeStringItem()
+        {
+            //Arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            //Act
+            testList1.Add("1");
+            testList1.Add("3");
+            testList1.Add("5");
+            testList1.Add("7");
+            testList1.Add("9");
+            testList2.Add("2");
+            testList2.Add("4");
+            testList2.Add("6");
+            testList2.Add("8");
+            testList2.Add("10");
+            CustomList<string> resultList = CustomList<string>.ZipperMerge(testList1, testList2);
+            string result = resultList[3];
+            string expected = "4";
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod]
+        public void TestZipperMergeStringCount()
         {
             //Arrange
             CustomList<string> testList1 = new CustomList<string>();
@@ -453,14 +520,11 @@ namespace CustomList
             CustomList<string> resultList = CustomList<string>.ZipperMerge(testList1, testList2);
             int result = resultList.Count;
             int expected = 10;
-            string result2nd = resultList[3];
-            string expected2nd = "4";
             //Assert
             Assert.AreEqual(expected, result);
-            Assert.AreEqual(expected2nd, result2nd);
         }
         [TestMethod]
-        public void TestZipperMergeStringUnevenCounts()
+        public void TestZipperMergeStringUnevenCountsItem()
         {
             //Arrange
             CustomList<string> testList1 = new CustomList<string>();
@@ -475,16 +539,52 @@ namespace CustomList
             testList2.Add("4");
             testList2.Add("6");
             CustomList<string>resultList= CustomList<string>.ZipperMerge(testList1,testList2);
-            int result = resultList.Count;
-            int expected = 8;
-            string result2nd = resultList[7];
-            string expected2nd = "9";
+            string result = resultList[7];
+            string expected = "9";
             //Assert
             Assert.AreEqual(expected, result);
-            Assert.AreEqual(expected2nd, result2nd);
         }
         [TestMethod]
-        public void TestZipperMergeStringOneEmpty()
+        public void TestZipperMergeStringUnevenCountsCount()
+        {
+            //Arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            //Act
+            testList1.Add("1");
+            testList1.Add("3");
+            testList1.Add("5");
+            testList1.Add("7");
+            testList1.Add("9");
+            testList2.Add("2");
+            testList2.Add("4");
+            testList2.Add("6");
+            CustomList<string> resultList = CustomList<string>.ZipperMerge(testList1, testList2);
+            int result = resultList.Count;
+            int expected = 8;
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod]
+        public void TestZipperMergeStringOneEmptyItem()
+        {
+            //Arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            //Act
+            testList1.Add("1");
+            testList1.Add("3");
+            testList1.Add("5");
+            testList1.Add("7");
+            testList1.Add("9");
+            CustomList<string> resultList = CustomList<string>.ZipperMerge(testList1, testList2);
+            string result = resultList[4];
+            string expected = "9";
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod]
+        public void TestZipperMergeStringOneEmptyCount()
         {
             //Arrange
             CustomList<string> testList1 = new CustomList<string>();
@@ -498,11 +598,8 @@ namespace CustomList
             CustomList<string> resultList = CustomList<string>.ZipperMerge(testList1, testList2);
             int result = resultList.Count;
             int expected = 5;
-            string result2nd = resultList[4];
-            string expected2nd = "9";
             //Assert
             Assert.AreEqual(expected, result);
-            Assert.AreEqual(expected2nd, result2nd);
         }
         [TestMethod]
         public void TestZipperMergeStringBothEmpty()
